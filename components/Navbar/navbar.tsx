@@ -9,23 +9,11 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const currentPath = router.pathname;
     if (currentPath === "/dashboard") {
-      setSelectedButton("Notificaciones");
-    } else if (currentPath === "/dashboard/bolsadeempleo" || currentPath === "/dashboard/solicitud" ) {
-      setSelectedButton("BolsaDeEmpleo");
-    } else if (currentPath === "/dashboard/bolsatrabajadores" || currentPath === "/dashboard/bolsatrabajadores" ) {
-      setSelectedButton("Bolsatrabajadores");
-    } else if (currentPath === "/dashboard/misofertas") {
-      setSelectedButton("MisOfertas");
-    } else if (currentPath === "/dashboard/missolicitudes") {
-      setSelectedButton("MisSolicitudes");
-    } else if (currentPath === "/dashboard/publicaroferta") {
-      setSelectedButton("PublicarOferta");
-    } else if (currentPath === "/dashboard/procesosactivos") {
-      setSelectedButton("ProcesosActivos");
-    } else if (currentPath === "/perfil") {
-      setSelectedButton("MiPerfil");
-    } else if (currentPath === "/perfil2") {
-      setSelectedButton("MiPerfil2");
+      setSelectedButton("HOME");
+    } else if (currentPath === "/dashboard/opcion1" || currentPath === "/dashboard/opcion1" ) {
+      setSelectedButton("opcion1");
+    } else if (currentPath === "/dashboard/opcion2" || currentPath === "/dashboard/opcion2" ) {
+      setSelectedButton("opcion2");
     }
   }, [router.pathname]);
 
@@ -53,7 +41,7 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 left-0 right-0 z-10 bg-cyan-950 bg-opacity-60 backdrop-filter backdrop-blur-lg flex items-center justify-between px-4 py-2 md:text-xs xl:text-base">
       <button
         className={`bg-opacity-25 text-white rounded-full py-2 px-3 border-2 hover:bg-white hover:text-cyan-950  hover:cursor-pointer ${
-          selectedButton === "Notificaciones" ? "bg-white bg-opacity-50 text-cyan-950" : ""
+          selectedButton === "HOME" ? "bg-white bg-opacity-50 text-cyan-950" : ""
         }`}
         onClick={() => router.push("/dashboard")}
       >
@@ -62,17 +50,17 @@ const Navbar: React.FC = () => {
       <div>
       <button  style={{fontSize:'0.60rem'}}
           className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
-            selectedButton === "BolsaDeEmpleo" ? "bg-white text-cyan-950 bg-opacity-50" : ""
+            selectedButton === "opcion1" ? "bg-white text-cyan-950 bg-opacity-50" : ""
           }`}
-          onClick={() => router.push("/dashboard/bolsadeempleo")}
+          onClick={() => router.push("/dashboard/opcion1")}
         >
           OPCION1
         </button>
         <button  style={{fontSize:'0.60rem'}}
           className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
-            selectedButton === "Bolsatrabajadores" ? "bg-white text-cyan-950 bg-opacity-50" : ""
+            selectedButton === "opcion2" ? "bg-white text-cyan-950 bg-opacity-50" : ""
           }`}
-          onClick={() => router.push("/dashboard/bolsatrabajadores")}
+          onClick={() => router.push("/dashboard/opcion2")}
         >
           OPCION 2
         </button>
