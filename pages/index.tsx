@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const Home = () => {
 
-const [email, setEmail] = useState("");
+const [usuario, setusuario] = useState("");
 const [password, setPassword] = useState("");
 const [errorMessage, setErrorMessage] = useState("");
 const router = useRouter();
@@ -21,7 +21,7 @@ const handleLogin = (e: React.FormEvent) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ usuario, password }),
   })
     .then(response => {
       if (response.ok) {
@@ -35,7 +35,7 @@ const handleLogin = (e: React.FormEvent) => {
       // console.log("Token:", accessToken);
       console.log(response.authToken);
 
-      Cookies.set('authvalue', response.authToken, cookieOptions); // Crear cookie con el valor del email
+      Cookies.set('authvalue', response.authToken, cookieOptions); // Crear cookie con el valor del usuario
       router.push("/dashboard");
     })
     .catch(error => {
@@ -48,21 +48,24 @@ const handleLogin = (e: React.FormEvent) => {
     <div className="relative w-full h-screen">
       
     <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
-      <div className="bg-gray-800 bg-opacity-60 backdrop-filter backdrop-blur-lg w-50vw pt-10 pb-10 mt-20">
+      <div className="bg-gray-800 bg-opacity-60 backdrop-filter backdrop-blur-lg w-50vw pt-10 pb-10 ">
         <div className="flex flex-col items-center p-24">
           <h2 className="text-4xl text-white pb-10">Iniciar Sesión</h2>
 
           <form onSubmit={handleLogin}>
             <div className="mb-4">
+              <h2 className="text-white text-xl">Usuario</h2>
               <input
                 className="w-full px-4 py-2 border rounded-md"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="usuario"
+                value={usuario}
+                onChange={(e) => setusuario(e.target.value)}
               />
             </div>
 
             <div className="mb-6">
+            <h2 className="text-white text-xl" >Contraseña</h2>
+
               <input
                 className="w-full px-4 py-2 border rounded-md"
                 type="password"
