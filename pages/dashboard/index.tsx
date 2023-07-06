@@ -1,5 +1,5 @@
 // Detallenotificacion.js
-import Navbar from "../../components/Navbar/NavbarIn";
+import Navbar from "../../components/Navbar/navbar";
 import Link from 'next/link'
 const Dashboard = () => {
   return (
