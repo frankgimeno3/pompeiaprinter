@@ -41,13 +41,13 @@ const Impresion = () => {
       <Navbar />
       <div className="mx-20 pl-10 mb-5 ">
 
-      <h1 className="mt-20 text-2xl">Check Opcion1</h1>
+      <h1 className="mt-20 text-2xl">Contenido a imprimir</h1>
       <div className="mr-20 ">
         {files.map((file, index) => (
-            <div className="flex my-2 flex-row justify-between bg-white align-center" key={index}>
-                <p className="mr-20 pl-10 py-1mb-5 ">{file.content}</p>
+            <div className="flex my-2 flex-row justify-between bg-white align-center pt-1" key={index}>
+                <p className="flex mr-20 pl-10 pt-1 mb-5 align-center">{file.content}</p>
                     <div className="my-2 flex-row " key={index}>
-                        <button className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50">Borrar</button>
+                        <button className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50">Visualizar</button>
                         <button className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50">Eliminar</button>
                     </div>
             </div>

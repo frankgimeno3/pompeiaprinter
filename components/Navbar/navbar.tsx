@@ -10,8 +10,8 @@ const Navbar: React.FC = () => {
     const currentPath = router.pathname;
     if (currentPath === "/dashboard") {
       setSelectedButton("HOME");
-    } else if (currentPath === "/dashboard/opcion1" || currentPath === "/dashboard/opcion1" ) {
-      setSelectedButton("opcion1");
+    } else if (currentPath === "/dashboard/impresion" || currentPath === "/dashboard/impresion" ) {
+      setSelectedButton("impresion");
     } else if (currentPath === "/dashboard/opcion2" || currentPath === "/dashboard/opcion2" ) {
       setSelectedButton("opcion2");
     }
@@ -50,11 +50,11 @@ const Navbar: React.FC = () => {
       <div>
       <button  style={{fontSize:'0.60rem'}}
           className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
-            selectedButton === "opcion1" ? "bg-white text-cyan-950 bg-opacity-50" : ""
+            selectedButton === "impresion" ? "bg-white text-cyan-950 bg-opacity-50" : ""
           }`}
-          onClick={() => router.push("/dashboard/opcion1")}
+          onClick={() => router.push("/dashboard/impresion")}
         >
-          OPCION1
+          Impresión
         </button>
         <button  style={{fontSize:'0.60rem'}}
           className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
