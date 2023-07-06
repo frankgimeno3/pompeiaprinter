@@ -10,7 +10,7 @@ interface File {
   __v: number;
 }
 
-const Opcion1 = () => {
+const Impresion = () => {
   const [files, setFiles] = useState<File[]>([]);
 
   useEffect(() => {
@@ -58,4 +58,4 @@ const Opcion1 = () => {
   );
 };
 
-export default Opcion1;
+export default Impresion;
