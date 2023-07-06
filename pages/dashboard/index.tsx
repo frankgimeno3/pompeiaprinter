@@ -6,7 +6,7 @@ const Dashboard = () => {
     <>
     <Navbar />
         <h1 className="mt-20 text-2xl">
-            Check
+            Check home
         </h1>
     </>
     );
