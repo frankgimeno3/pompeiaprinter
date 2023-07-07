@@ -47,8 +47,14 @@ const Impresion = () => {
             <div className="flex my-2 flex-row justify-between bg-white align-center pt-1" key={index}>
                 <p className="flex mr-20 pl-10 pt-1 mb-5 align-center">{file.content}</p>
                     <div className="my-2 flex-row " key={index}>
-                        <button className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50">Visualizar</button>
-                        <button className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50">Eliminar</button>
+                        <button 
+                        className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50"
+                        onClick={handleprint}
+                        >Visualizar</button>
+                        <button 
+                        className="rounded bg-gray-100 shadow px-5 py-1 mr-5 text-xs hover:bg-gray-50"
+                        onClick={handledelete}
+                        >Eliminar</button>
                     </div>
             </div>
             ))}
