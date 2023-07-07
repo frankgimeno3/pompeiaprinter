@@ -36,6 +36,12 @@ const Impresion = () => {
     });
   }, []);
 
+  const handleprint = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("esto te tendría que visualizar el PDF")
+  }
+
+
   return (
     <>
       <Navbar />
