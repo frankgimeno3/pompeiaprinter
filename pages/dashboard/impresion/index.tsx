@@ -40,6 +40,11 @@ const Impresion = () => {
     e.preventDefault();
     console.log("esto te tendría que visualizar el PDF")
   }
+  
+  const handledelete = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("esto te tendría que visualizar el PDF")
+  }
 
 
   return (
