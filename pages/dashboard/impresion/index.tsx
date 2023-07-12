@@ -80,6 +80,9 @@ const Impresion = () => {
     pageStyle: "@page { size: landscape; }",
   });
 
+  const contenidodinámico = "CONTENIDO";
+  const contenidodinámico2 = "PARA";
+
   return (
     <div className="h-screen">
       <Navbar />
@@ -170,6 +173,8 @@ const Impresion = () => {
           ref={componentRef}
           nombre={files.length > 0 ? files[0].nombre : ""}
           tuDios={files.length > 0 ? files[0].midios : ""}
+          contenidodinámico = {contenidodinámico}
+          contenidodinámico2 = {contenidodinámico2}
         />
       </div>
     </div>
@@ -177,7 +182,7 @@ const Impresion = () => {
 };
 
 const ComponentToPrint = React.forwardRef(function ComponentToPrint(
-  { nombre, tuDios }: { nombre: string; tuDios: string },
+  { nombre, tuDios, contenidodinámico, contenidodinámico2 }: { nombre: string; tuDios: string ; contenidodinámico: any ; contenidodinámico2: any},
   ref: React.Ref<HTMLDivElement>
 ) {
   return (
@@ -198,9 +203,9 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
             <div className="flex flex-col p-2">
               <h2 className="font-bold text-xl">{tuDios}</h2>
               <div className="text-xs">
-                <p>DIOS DE LA BELLEZA,</p>
-                <p>LAS ARTES PLÁSTICAS</p>
-                <p>Y LA MÚSICA</p>
+              <p>{contenidodinámico}</p>
+              <p>{contenidodinámico2}</p>
+              <p> EL DIOS {tuDios}</p>
               </div>
             </div>
           </div>
