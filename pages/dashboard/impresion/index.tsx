@@ -5,7 +5,8 @@ import { useRouter } from "next/router";
 
 interface File {
   _id: string;
-  content: string;
+  nombre: string;
+  midios: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -100,8 +101,8 @@ const Impresion = () => {
               {files.map((file, index) => (
                 <tr key={file._id} className="border border-gray-300  font-light">
                   <td className="border border-gray-300 text-[0.65rem] pl-3">{file._id}</td>
-                  <td className="border border-gray-300 text-[0.65rem] pl-3">timestamps</td>
-                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file.content}</td>
+                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file.updatedAt}</td>
+                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file.nombre}</td>
                   <td className="border border-gray-300 text-center ">
                     <button
                       onClick={handleprint}
