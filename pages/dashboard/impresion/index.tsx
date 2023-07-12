@@ -82,18 +82,18 @@ const Impresion = () => {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="mx-20 pl-10   ">
-        <h1 className="mt-20 text-2xl  font-light">Contenido a imprimir</h1>
+      <div className="p-10   ">
+        <h1 className="  text-xl  font-light">Contenido a imprimir</h1>
         <div className="mr-20 mt-5 ">
           
           <table className="text-xs  border border-gray-300 bg-white">
             <thead>
               <tr className="border border-gray-300  ">
-                <th className="py-1.5 px-20 font-medium border border-gray-300">Id</th>
-                <th className="py-1.5 px-20 font-medium border border-gray-300">Fecha</th>
-                <th className="py-1.5 px-20 font-medium border border-gray-300">Nombre</th>
-                <th className="py-1.5 px-20 font-medium border border-gray-300">Archivo</th>
-                <th className="py-1.5 px-20 font-medium border border-gray-300">Opciones</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">Id</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">Fecha</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">Nombre</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">Archivo</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">Opciones</th>
               </tr>
             </thead>
             <tbody >
@@ -148,5 +148,7 @@ const Impresion = () => {
     </div>
   );
 };
+
+
 
 export default Impresion;
