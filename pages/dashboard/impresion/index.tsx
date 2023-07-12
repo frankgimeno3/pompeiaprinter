@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../../components/Navbar/navbar";
-import { useReactToPrint } from 'react-to-print';
-import Image from 'next/image'
+import { useReactToPrint } from "react-to-print";
+import Image from "next/image";
 
 interface File {
   _id: string;
@@ -16,7 +16,7 @@ const Impresion = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [showAlert, setShowAlert] = useState(false); // Estado para mostrar/ocultar la alerta
   const [selectedFileId, setSelectedFileId] = useState(""); // Estado para almacenar el ID del archivo seleccionado
-   const componentRef = useRef<HTMLDivElement>(null);
+  const componentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/files/", {
@@ -77,7 +77,7 @@ const Impresion = () => {
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    pageStyle: '@page { size: landscape; }',
+    pageStyle: "@page { size: landscape; }",
   });
 
   return (
@@ -89,19 +89,39 @@ const Impresion = () => {
           <table className="text-xs border border-gray-300 bg-white">
             <thead>
               <tr className="border border-gray-300">
-                <th className="py-1.5 px-10 font-medium border border-gray-300">Id</th>
-                <th className="py-1.5 px-10 font-medium border border-gray-300">Fecha</th>
-                <th className="py-1.5 px-10 font-medium border border-gray-300">Nombre</th>
-                <th className="py-1.5 px-10 font-medium border border-gray-300">Archivo</th>
-                <th className="py-1.5 px-10 font-medium border border-gray-300">Opciones</th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">
+                  Hora
+                </th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">
+                  Dios
+                </th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">
+                  Nombre
+                </th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">
+                  Archivo
+                </th>
+                <th className="py-1.5 px-10 font-medium border border-gray-300">
+                  Opciones
+                </th>
               </tr>
             </thead>
             <tbody>
               {files.map((file, index) => (
-                <tr key={file._id} className="border border-gray-300 font-light">
-                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file._id}</td>
-                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file.updatedAt}</td>
-                  <td className="border border-gray-300 text-[0.65rem] pl-3">{file.nombre}</td>
+                <tr
+                  key={file._id}
+                  className="border border-gray-300 font-light"
+                >
+                  <td className="border border-gray-300 text-[0.65rem] text-center">
+                    {new Date(file.updatedAt).toLocaleTimeString()} -{" "}
+                    {new Date(file.updatedAt).toLocaleDateString()}
+                  </td>{" "}
+                  <td className="border border-gray-300 text-[0.65rem] text-center">
+                    {file.midios}
+                  </td>
+                  <td className="border border-gray-300 text-[0.65rem] text-center">
+                    {file.nombre}
+                  </td>
                   <td className="border border-gray-300 text-center">
                     <button
                       onClick={handlePrint}
@@ -145,14 +165,21 @@ const Impresion = () => {
           </div>
         </div>
       )}
-      <div style={{ display: 'none' }}>
-        <ComponentToPrint ref={componentRef} nombre={files.length > 0 ? files[0].nombre : ''} tuDios={files.length > 0 ? files[0].midios : ''} />
+      <div style={{ display: "none" }}>
+        <ComponentToPrint
+          ref={componentRef}
+          nombre={files.length > 0 ? files[0].nombre : ""}
+          tuDios={files.length > 0 ? files[0].midios : ""}
+        />
       </div>
     </div>
   );
 };
 
-const ComponentToPrint = React.forwardRef(function ComponentToPrint({ nombre, tuDios }: { nombre: string; tuDios: string }, ref: React.Ref<HTMLDivElement>) {
+const ComponentToPrint = React.forwardRef(function ComponentToPrint(
+  { nombre, tuDios }: { nombre: string; tuDios: string },
+  ref: React.Ref<HTMLDivElement>
+) {
   return (
     <div ref={ref}>
       <div className="flex flex-col mb-20 text-center justify-center m-20">
@@ -160,7 +187,12 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint({ nombre, tu
         <p className="text-black text-xs">TU DIOS ES</p>
         <div className="flex flex-row" style={{ height: "30", width: "40" }}>
           <div className="flex flex-col items-center" style={{ flex: 1 }}>
-            <Image src="/midiosfoto.png" alt="midiosfoto" width={120} height={120} />
+            <Image
+              src="/midiosfoto.png"
+              alt="midiosfoto"
+              width={120}
+              height={120}
+            />
           </div>
           <div className="flex flex-col p-5 text-black" style={{ flex: 1 }}>
             <div className="flex flex-col p-2">
@@ -178,6 +210,6 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint({ nombre, tu
   );
 });
 
-ComponentToPrint.displayName = 'ComponentToPrint';
+ComponentToPrint.displayName = "ComponentToPrint";
 
 export default Impresion;
