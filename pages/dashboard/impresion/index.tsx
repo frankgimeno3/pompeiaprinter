@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../../components/Navbar/navbar";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useReactToPrint } from 'react-to-print';
+import Image from 'next/image'
 
 interface File {
   _id: string;
@@ -16,7 +16,7 @@ const Impresion = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [showAlert, setShowAlert] = useState(false); // Estado para mostrar/ocultar la alerta
   const [selectedFileId, setSelectedFileId] = useState(""); // Estado para almacenar el ID del archivo seleccionado
-  const router = useRouter();
+   const componentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/files/", {
@@ -41,12 +41,7 @@ const Impresion = () => {
       });
   }, []);
 
-  const handleprint = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("esto te tendría que visualizar el PDF");
-  };
-
-  const handledelete = (id: string) => {
+  const handleDelete = (id: string) => {
     fetch(`http://localhost:5000/files/${id}`, {
       method: "DELETE",
       headers: {
@@ -77,19 +72,23 @@ const Impresion = () => {
 
   const confirmDelete = () => {
     setShowAlert(false);
-    handledelete(selectedFileId);
+    handleDelete(selectedFileId);
   };
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: '@page { size: landscape; }',
+  });
 
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="p-10   ">
-        <h1 className="  text-xl  font-light">Contenido a imprimir</h1>
-        <div className="mr-20 mt-5 ">
-          
-          <table className="text-xs  border border-gray-300 bg-white">
+      <div className="p-10">
+        <h1 className="text-xl font-light">Contenido a imprimir</h1>
+        <div className="mr-20 mt-5">
+          <table className="text-xs border border-gray-300 bg-white">
             <thead>
-              <tr className="border border-gray-300  ">
+              <tr className="border border-gray-300">
                 <th className="py-1.5 px-10 font-medium border border-gray-300">Id</th>
                 <th className="py-1.5 px-10 font-medium border border-gray-300">Fecha</th>
                 <th className="py-1.5 px-10 font-medium border border-gray-300">Nombre</th>
@@ -97,15 +96,15 @@ const Impresion = () => {
                 <th className="py-1.5 px-10 font-medium border border-gray-300">Opciones</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               {files.map((file, index) => (
-                <tr key={file._id} className="border border-gray-300  font-light">
+                <tr key={file._id} className="border border-gray-300 font-light">
                   <td className="border border-gray-300 text-[0.65rem] pl-3">{file._id}</td>
                   <td className="border border-gray-300 text-[0.65rem] pl-3">{file.updatedAt}</td>
                   <td className="border border-gray-300 text-[0.65rem] pl-3">{file.nombre}</td>
-                  <td className="border border-gray-300 text-center ">
+                  <td className="border border-gray-300 text-center">
                     <button
-                      onClick={handleprint}
+                      onClick={handlePrint}
                       className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50"
                     >
                       Visualizar
@@ -131,7 +130,7 @@ const Impresion = () => {
             <p className="text-xl mb-5">¿Estás seguro que deseas eliminar?</p>
             <div className="flex justify-end">
               <button
-                className="rounded bg-red-500 text-white px-4 py-2 mr-2 "
+                className="rounded bg-red-500 text-white px-4 py-2 mr-2"
                 onClick={confirmDelete}
               >
                 ELIMINAR
@@ -146,10 +145,39 @@ const Impresion = () => {
           </div>
         </div>
       )}
+      <div style={{ display: 'none' }}>
+        <ComponentToPrint ref={componentRef} nombre={files.length > 0 ? files[0].nombre : ''} tuDios={files.length > 0 ? files[0].midios : ''} />
+      </div>
     </div>
   );
 };
 
+const ComponentToPrint = React.forwardRef(function ComponentToPrint({ nombre, tuDios }: { nombre: string; tuDios: string }, ref: React.Ref<HTMLDivElement>) {
+  return (
+    <div ref={ref}>
+      <div className="flex flex-col mb-20 text-center justify-center m-20">
+        <h1 className="text-3xl mt-20">{nombre}</h1>
+        <p className="text-black text-xs">TU DIOS ES</p>
+        <div className="flex flex-row" style={{ height: "30", width: "40" }}>
+          <div className="flex flex-col items-center" style={{ flex: 1 }}>
+            <Image src="/midiosfoto.png" alt="midiosfoto" width={120} height={120} />
+          </div>
+          <div className="flex flex-col p-5 text-black" style={{ flex: 1 }}>
+            <div className="flex flex-col p-2">
+              <h2 className="font-bold text-xl">{tuDios}</h2>
+              <div className="text-xs">
+                <p>DIOS DE LA BELLEZA,</p>
+                <p>LAS ARTES PLÁSTICAS</p>
+                <p>Y LA MÚSICA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
 
+ComponentToPrint.displayName = 'ComponentToPrint';
 
 export default Impresion;
