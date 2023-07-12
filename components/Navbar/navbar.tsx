@@ -43,27 +43,13 @@ const Navbar: React.FC = () => {
         className={`bg-opacity-25 text-white rounded-full py-2 px-3 border-2 hover:bg-white hover:text-cyan-950  hover:cursor-pointer ${
           selectedButton === "HOME" ? "bg-white bg-opacity-50 text-cyan-950" : ""
         }`}
-        onClick={() => router.push("/dashboard")}
-      >
-        HOME
-      </button>
-      <div>
-      <button  style={{fontSize:'0.60rem'}}
-          className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
-            selectedButton === "impresion" ? "bg-white text-cyan-950 bg-opacity-50" : ""
-          }`}
-          onClick={() => router.push("/dashboard/impresion")}
+        onClick={() => router.push("/dashboard/impresion")}
         >
           Impresión
-        </button>
-        <button  style={{fontSize:'0.60rem'}}
-          className={`bg-opacity-5 text-white rounded-md mr-1 py-2 px-4 hover:bg-white hover:bg-opacity-50 hover:text-cyan-950  hover:cursor-pointer ${
-            selectedButton === "opcion2" ? "bg-white text-cyan-950 bg-opacity-50" : ""
-          }`}
-          onClick={() => router.push("/dashboard/opcion2")}
-        >
-          OPCION 2
-        </button>
+      </button>
+      <div>
+ 
+ 
          
         <button style={{fontSize:'0.60rem'}}
           onClick={handleLogout}
