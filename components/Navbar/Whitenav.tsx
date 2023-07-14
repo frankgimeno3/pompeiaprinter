@@ -9,10 +9,18 @@ interface WhitenavProps {
 
 const Whitenav: React.FC<WhitenavProps> = ({ setNavbarVisible }) => {
   const router = useRouter();
- 
+  const [navbarVisible, setNavbarVisibleState] = useState(true);
+
   const handleToggleNavbar = () => {
-    setNavbarVisible(false);
-  };
+    if(navbarVisible){
+        setNavbarVisible(false)
+        setNavbarVisibleState(false)
+    }
+    else{
+        setNavbarVisible(true)
+        setNavbarVisibleState(true)
+    }
+};
 
   const handleLogout = async () => {
     Cookies.remove("authvalue");
