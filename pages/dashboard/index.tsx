@@ -32,8 +32,11 @@ const Dashboard = () => {
       },
     })
       .then((response) => {
-        if (response.ok) {return response.json();} 
-        else {throw new Error("Credenciales incorrectas");}
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Credenciales incorrectas");
+        }
       })
       .then((response) => {
         console.log(response);
@@ -64,16 +67,20 @@ const Dashboard = () => {
       });
   };
 
-  const showDeleteAlert = (id: string) => {setSelectedFileId(id);
+  const showDeleteAlert = (id: string) => {
+    setSelectedFileId(id);
     setShowAlert(true);
   };
 
-  const cancelDelete = () => {setShowAlert(false)};
+  const cancelDelete = () => {
+    setShowAlert(false);
+  };
 
-  const confirmDelete = () => {setShowAlert(false);
+  const confirmDelete = () => {
+    setShowAlert(false);
     handleDelete(selectedFileId);
   };
-  
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     pageStyle: "@page { size: landscape; }",
@@ -81,18 +88,18 @@ const Dashboard = () => {
 
   const contenidodinámico = "CONTENIDO";
   const contenidodinámico2 = "PARA";
-  const handleShowMoreRows = () => {setShowMoreRows(true)};
+  const handleShowMoreRows = () => {
+    setShowMoreRows(true);
+  };
 
   return (
     <div className="flex h-screen w-screen bg-gray-100 ">
       {navbarVisible && <Navbar />}
       <div className="flex flex-col w-screen  ">
-        <Whitenav setNavbarVisible={setNavbarVisible}/>
+        <Whitenav setNavbarVisible={setNavbarVisible} />
         <div className="p-5">
-            <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo  </h2>
+          <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
           <div className="mr-20 bg-white p-5 ">
-            <div>
-             </div>
             <table className="text-xs border border-gray-300 bg-white w-full text-left">
               <thead>
                 <tr className="border border-gray-300">
@@ -114,53 +121,53 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-              {files.slice(0, showMoreRows ? files.length : maxRowsToShow).map((file, index) => (
-
-                   <tr
-                    key={file._id}
-                    className="border border-gray-300 font-light"
-                  >
-                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-                      {new Date(file.updatedAt).toLocaleTimeString()} -{" "}
-                      {new Date(file.updatedAt).toLocaleDateString()}
-                    </td>{" "}
-                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-                      {file.nombre}
-                    </td>
-                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-                      {file.midios}
-                    </td>
-                    <td className="border border-gray-300 text-center">
-                      <button
-                        onClick={handlePrint}
-                        className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50"
-                      >
-                        Visualizar
-                      </button>
-                    </td>
-                    <td className="border border-gray-300 text-center">
-                      <button
-                        onClick={() => showDeleteAlert(file._id)}
-                        className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] my-2 hover:bg-gray-50"
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
- 
+                {files
+                  .slice(0, showMoreRows ? files.length : maxRowsToShow)
+                  .map((file, index) => (
+                    <tr
+                      key={file._id}
+                      className="border border-gray-300 font-light"
+                    >
+                      <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                        {new Date(file.updatedAt).toLocaleTimeString()} -{" "}
+                        {new Date(file.updatedAt).toLocaleDateString()}
+                      </td>{" "}
+                      <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                        {file.nombre}
+                      </td>
+                      <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                        {file.midios}
+                      </td>
+                      <td className="border border-gray-300 text-center">
+                        <button
+                          onClick={handlePrint}
+                          className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50"
+                        >
+                          Visualizar
+                        </button>
+                      </td>
+                      <td className="border border-gray-300 text-center">
+                        <button
+                          onClick={() => showDeleteAlert(file._id)}
+                          className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] my-2 hover:bg-gray-50"
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
             {files.length > maxRowsToShow && !showMoreRows && (
-            <div className="flex justify-center mt-4">
-              <button
-                className="bg-blue-500 text-white text-sm py-2 px-4 rounded hover:bg-blue-600"
-                onClick={handleShowMoreRows}
-              >
-                Ver más filas
-              </button>
+              <div className="flex justify-center mt-4">
+                <button
+                  className="bg-blue-500 text-white text-sm py-2 px-4 rounded hover:bg-blue-600"
+                  onClick={handleShowMoreRows}
+                >
+                  Ver más filas
+                </button>
               </div>
-          )}
+            )}
           </div>
         </div>
       </div>
