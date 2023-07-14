@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar/navbar";
+import Whitenav from "../../components/Navbar/Whitenav";
 import { useReactToPrint } from "react-to-print";
 import Image from "next/image";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
 interface File {
@@ -20,13 +20,9 @@ const Dashboard = () => {
   const [selectedFileId, setSelectedFileId] = useState(""); // Estado para almacenar el ID del archivo seleccionado
   const componentRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const [navbarVisible, setNavbarVisible] = useState(true);
   const [showMoreRows, setShowMoreRows] = useState(false);
   const maxRowsToShow = 10;
-
-  const handleToggleNavbar = () => {
-    setNavbarVisible(!navbarVisible);
-   };
+  const [navbarVisible, setNavbarVisible] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/files/", {
@@ -36,11 +32,8 @@ const Dashboard = () => {
       },
     })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Credenciales incorrectas");
-        }
+        if (response.ok) {return response.json();} 
+        else {throw new Error("Credenciales incorrectas");}
       })
       .then((response) => {
         console.log(response);
@@ -71,38 +64,16 @@ const Dashboard = () => {
       });
   };
 
-  const showDeleteAlert = (id: string) => {
-    setSelectedFileId(id);
+  const showDeleteAlert = (id: string) => {setSelectedFileId(id);
     setShowAlert(true);
   };
 
-  const cancelDelete = () => {
-    setShowAlert(false);
-  };
+  const cancelDelete = () => {setShowAlert(false)};
 
-  const confirmDelete = () => {
-    setShowAlert(false);
+  const confirmDelete = () => {setShowAlert(false);
     handleDelete(selectedFileId);
   };
-  const handleLogout = async () => {
-    Cookies.remove("authvalue");
-    try {
-      const res = await fetch("http://localhost:5000/auth/logout", {
-        method: "POST",
-        credentials: "include", // Para enviar las cookies al servidor
-      });
-      if (res.status === 200) {
-        // Se ha cerrado sesión con éxito
-        router.push("/login"); // Redirige al usuario a la página de inicio de sesión
-      } else {
-        // Manejar el caso de error si no se pudo cerrar sesión
-        console.error("No se pudo cerrar sesión");
-      }
-    } catch (error) {
-      console.error("Error al cerrar sesión", error);
-    }
-    router.push("/");
-  };
+  
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     pageStyle: "@page { size: landscape; }",
@@ -110,34 +81,13 @@ const Dashboard = () => {
 
   const contenidodinámico = "CONTENIDO";
   const contenidodinámico2 = "PARA";
-  const handleShowMoreRows = () => {
-    setShowMoreRows(true);
-  };
+  const handleShowMoreRows = () => {setShowMoreRows(true)};
+
   return (
     <div className="flex h-screen w-screen bg-gray-100 ">
       {navbarVisible && <Navbar />}
       <div className="flex flex-col w-screen  ">
-        <nav className="flex flex-row bg-white justify-between px-2 py-1 shadow  ">
-          <div className="px-2 py-1 ">
-            <button className="pt-2" onClick={handleToggleNavbar}>
-                        <Image
-              src="/menuicon.png"
-              alt="menuicon"
-              width={20}
-              height={20}
-            />
-            </button>
-          </div>
-          <div className="px-2 py-1">
-            <button
-              style={{ fontSize: "0.60rem" }}
-              onClick={handleLogout}
-              className="bg-blue-500 text-white text-sm py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Cerrar sesión
-            </button>
-          </div>
-        </nav>
+        <Whitenav setNavbarVisible={setNavbarVisible}/>
         <div className="p-5">
             <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo  </h2>
           <div className="mr-20 bg-white p-5 ">
