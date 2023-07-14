@@ -143,19 +143,19 @@ const Dashboard = () => {
             <table className="text-xs border border-gray-300 bg-white w-full text-left">
               <thead>
                 <tr className="border border-gray-300">
-                  <th className="py-1.5  font-medium border border-gray-300">
+                  <th className="py-1.5 pl-5  font-medium border border-gray-300">
                     Hora
                   </th>
-                  <th className="py-1.5  font-medium border border-gray-300">
+                  <th className="py-1.5 pl-5  font-medium border border-gray-300">
                     Nombre
                   </th>
-                  <th className="py-1.5 font-medium border border-gray-300">
+                  <th className="py-1.5 pl-5 font-medium border border-gray-300">
                     Dios
                   </th>
-                  <th className="py-1.5  font-medium border border-gray-300">
+                  <th className="py-1.5 text-center font-medium border border-gray-300">
                     Archivo
                   </th>
-                  <th className="py-1.5   font-medium border border-gray-300">
+                  <th className="py-1.5   text-center  font-medium border border-gray-300">
                     Opciones
                   </th>
                 </tr>
@@ -166,14 +166,14 @@ const Dashboard = () => {
                     key={file._id}
                     className="border border-gray-300 font-light"
                   >
-                    <td className="border border-gray-300 text-[0.65rem] text-center">
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
                       {new Date(file.updatedAt).toLocaleTimeString()} -{" "}
                       {new Date(file.updatedAt).toLocaleDateString()}
                     </td>{" "}
-                    <td className="border border-gray-300 text-[0.65rem] text-center">
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
                       {file.nombre}
                     </td>
-                    <td className="border border-gray-300 text-[0.65rem] text-center">
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
                       {file.midios}
                     </td>
                     <td className="border border-gray-300 text-center">
