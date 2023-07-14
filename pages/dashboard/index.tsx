@@ -21,9 +21,8 @@ const Dashboard = () => {
   const componentRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [navbarVisible, setNavbarVisible] = useState(true);
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Número de filas por página
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
-
+  const [showMoreRows, setShowMoreRows] = useState(false);
+  const maxRowsToShow = 10;
 
   const handleToggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
@@ -111,24 +110,11 @@ const Dashboard = () => {
 
   const contenidodinámico = "CONTENIDO";
   const contenidodinámico2 = "PARA";
-
- // Función para cambiar el número de filas por página
-const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setRowsPerPage(Number(e.target.value));
-  setCurrentPage(1); // Reiniciar la página actual al cambiar el número de filas por página
-};
-  // Función para ir a una página específica
-  const goToPage = (page: number) => {
-    setCurrentPage(page);
+  const handleShowMoreRows = () => {
+    setShowMoreRows(true);
   };
-
-  // Cálculo de los índices de las filas que se mostrarán en la página actual
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
-
-
   return (
-    <div className="flex h-screen w-screen bg-gray-100">
+    <div className="flex h-screen w-screen bg-gray-100 ">
       {navbarVisible && <Navbar />}
       <div className="flex flex-col w-screen  ">
         <nav className="flex flex-row bg-white justify-between px-2 py-1 shadow  ">
@@ -156,20 +142,6 @@ const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
             <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo  </h2>
           <div className="mr-20 bg-white p-5 ">
             <div>
-            <div className="mb-4 ml-3">
-        <label htmlFor="rowsPerPage">Filas por página:</label>
-        <select
-          id="rowsPerPage"
-          className="ml-2 px-2 py-1 border border-gray-300 rounded"
-          value={rowsPerPage}
-          onChange={handleRowsPerPageChange}
-        >
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
-      </div>
              </div>
             <table className="text-xs border border-gray-300 bg-white w-full text-left">
               <thead>
@@ -192,8 +164,9 @@ const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
                 </tr>
               </thead>
               <tbody>
-                {files.map((file, index) => (
-                  <tr
+              {files.slice(0, showMoreRows ? files.length : maxRowsToShow).map((file, index) => (
+
+                   <tr
                     key={file._id}
                     className="border border-gray-300 font-light"
                   >
@@ -225,27 +198,19 @@ const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
                     </td>
                   </tr>
                 ))}
+ 
               </tbody>
             </table>
-            {files.length > rowsPerPage && (
-        <div className="flex justify-center mt-3">
-          {Array.from({ length: Math.ceil(files.length / rowsPerPage) }).map(
-            (item, index) => (
+            {files.length > maxRowsToShow && !showMoreRows && (
+            <div className="flex justify-center mt-4">
               <button
-                key={index}
-                className={`mx-1 py-1 px-2 border ${
-                  currentPage === index + 1
-                    ? "bg-gray-200"
-                    : "bg-white hover:bg-gray-200"
-                }`}
-                onClick={() => goToPage(index + 1)}
+                className="bg-blue-500 text-white text-sm py-2 px-4 rounded hover:bg-blue-600"
+                onClick={handleShowMoreRows}
               >
-                {index + 1}
+                Ver más filas
               </button>
-            )
+              </div>
           )}
-        </div>
-      )}
           </div>
         </div>
       </div>

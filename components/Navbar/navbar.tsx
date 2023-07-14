@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
   
 
   return (
-    <nav className="flex flex-col bg-slate-800  items-start text-start py-2 md:text-xs xl:text-base">
+    <nav className="flex flex-col bg-slate-800 h-full items-start text-start py-2 md:text-xs xl:text-base">
       <h2
         className="flex flex-wrap bg-opacity-25 text-white py-1 pr-8 pl-4 mr-5 text-md mt-3 font-semibold  "
        >
