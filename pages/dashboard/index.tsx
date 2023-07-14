@@ -93,7 +93,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen bg-gray-100 ">
+    <div className="flex min-h-screen w-screen bg-gray-100 ">
       {navbarVisible && <Navbar />}
       <div className="flex flex-col w-screen  ">
         <Whitenav setNavbarVisible={setNavbarVisible} />
