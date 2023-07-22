@@ -15,7 +15,7 @@ interface File {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  lang:string;
+  lang: string;
 }
 
 const Dashboard = () => {
@@ -29,6 +29,7 @@ const Dashboard = () => {
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [contenidodios, setcontenidodios] = useState(true);
   const [currentOrder, setCurrentOrder] = useState<string>("");
+  const [selectedRowData, setSelectedRowData] = useState<File | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/files/", {
@@ -99,21 +100,27 @@ const Dashboard = () => {
   const handleHeaderClick = (header: string) => {
     const newOrder = header === currentOrder ? `-${header}` : header;
     const sortedTableData = files.slice().sort((a, b) => {
-      if (header === 'updatedAt') {
-         return (
+      if (header === "updatedAt") {
+        return (
           new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
         );
       } else {
-         return (a as any)[header].localeCompare((b as any)[header]);
+        return (a as any)[header].localeCompare((b as any)[header]);
       }
     });
 
-    if (newOrder.startsWith('-')) {
+    if (newOrder.startsWith("-")) {
       sortedTableData.reverse();
     }
 
     setFiles(sortedTableData);
     setCurrentOrder(newOrder);
+  };
+
+  // Function to handle "Visualizar" button click
+  const handleVisualizar = (file: File) => {
+    setSelectedRowData(file);
+    handlePrint(); // Trigger the printing functionality when "Visualizar" button is clicked
   };
 
   return (
@@ -124,59 +131,77 @@ const Dashboard = () => {
         <div className="p-5">
           <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
           <div className="mr-20 bg-white p-5 ">
-          <table className="text-xs border border-gray-300 bg-white w-full text-left">
-  <thead>
-    <tr className="border border-gray-300">
-      <th className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer" onClick={() => handleHeaderClick('updatedAt')}>
-        Hora
-      </th>
-      <th className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer" onClick={() => handleHeaderClick('nombre')}>
-        Nombre
-      </th>
-      <th className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer" onClick={() => handleHeaderClick('midios')}>
-        Dios
-      </th>
-      <th className="py-1.5 text-center font-medium border border-gray-300">
-        Archivo
-      </th>
-      <th className="py-1.5 text-center font-medium border border-gray-300">
-        Opciones
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    {files.map((file) => (
-      <tr key={file._id} className="border border-gray-300 font-light">
-        <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-          {new Date(file.updatedAt).toLocaleDateString()} -{" "}
-          {new Date(file.updatedAt).toLocaleTimeString()} 
-        </td>
-        <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-          {file.nombre}
-        </td>
-        <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
-          {file.midios}
-        </td>
-        <td className="border border-gray-300 text-center">
-          <button
-            className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50 btn-visualizar"
-            onClick={handlePrint}
-          >
-            Visualizar
-          </button>
-        </td>
-        <td className="border border-gray-300 text-center">
-          <button
-            className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] my-2 hover:bg-gray-50 btn-eliminar"
-            onClick={() => showDeleteAlert(file._id)}
-          >
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+            <table className="text-xs border border-gray-300 bg-white w-full text-left">
+              <thead>
+                <tr className="border border-gray-300">
+                  <th
+                    className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer"
+                    onClick={() => handleHeaderClick("updatedAt")}
+                  >
+                    Hora
+                  </th>
+                  <th
+                    className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer"
+                    onClick={() => handleHeaderClick("nombre")}
+                  >
+                    Nombre
+                  </th>
+                  <th
+                    className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer"
+                    onClick={() => handleHeaderClick("midios")}
+                  >
+                    Dios
+                  </th>
+                  <th
+                    className="py-1.5 pl-5 font-medium border border-gray-300 cursor-pointer"
+                    onClick={() => handleHeaderClick("lang")}
+                  >
+                    Idioma
+                  </th>
+                  <th className="py-1.5 text-center font-medium border border-gray-300">
+                    Archivo
+                  </th>
+                  <th className="py-1.5 text-center font-medium border border-gray-300">
+                    Opciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {files.map((file) => (
+                  <tr key={file._id} className="border border-gray-300 font-light">
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                      {new Date(file.updatedAt).toLocaleDateString()} -{" "}
+                      {new Date(file.updatedAt).toLocaleTimeString()}
+                    </td>
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                      {file.nombre}
+                    </td>
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                      {file.midios}
+                    </td>
+                    <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
+                      {file.lang}
+                    </td>
+                    <td className="border border-gray-300 text-center">
+                      <button
+                        className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50 btn-visualizar"
+                        onClick={() => handleVisualizar(file)} // Update the selected row data and trigger printing
+                      >
+                        Visualizar
+                      </button>
+                    </td>
+                    <td className="border border-gray-300 text-center">
+                      <button
+                        className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] my-2 hover:bg-gray-50 btn-eliminar"
+                        onClick={() => showDeleteAlert(file._id)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
             {files.length > maxRowsToShow && !showMoreRows && (
               <div className="flex justify-center mt-4">
                 <button
@@ -212,14 +237,16 @@ const Dashboard = () => {
         </div>
       )}
       <div style={{ display: "none" }}>
-        <ComponentToPrint
-          ref={componentRef}
-          nombre={files.length > 0 ? files[0].nombre : ""}
-          tuDios={files.length > 0 ? files[0].midios : ""}
-          contenido ={Contenido}
-          contenidoeng={Contenidoeng}
-          // lang={files[0].lang}
-        />
+        {/* Pass the selectedRowData to ComponentToPrint */}
+        {selectedRowData && (
+          <ComponentToPrint
+            ref={componentRef}
+            nombre={selectedRowData.nombre}
+            tuDios={selectedRowData.midios}
+            contenido={Contenido}
+            contenidoeng={Contenidoeng}
+          />
+        )}
       </div>
     </div>
   );
@@ -244,12 +271,12 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
   return (
     <div
       ref={ref}
-      className="h-screen flex justify-center text-center relative"
+      className="h-screen flex justify-center text-center relative cinzel-font"
     >
       {/* Contenedor para la imagen de fondo */}
       <div
-        className="absolute top-0 left-0 w-full h-full z-0"
-        style={{ opacity: 0.3 }}  
+        className="absolute top-0 left-0 w-full h-full z-0 "
+        style={{ opacity: 0.3 }}
       >
         <img
           src="/fondo1.png"
