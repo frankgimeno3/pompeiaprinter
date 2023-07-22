@@ -115,8 +115,6 @@ const Dashboard = () => {
     setCurrentOrder(newOrder);
   };
 
-
-  // Function to handle "Visualizar" button click
   const handleVisualizar = (file: File) => {
     setSelectedRowData(file);
     function selectedgod (file: File) {
@@ -149,8 +147,9 @@ const Dashboard = () => {
       }
       }
       selectedgod(file)
-     handlePrint(); // Trigger the printing functionality when "Visualizar" button is clicked
-  };
+      setTimeout(function() {
+        handlePrint();
+      }, 500);  };
 
   return (
     <div className="flex min-h-screen w-screen bg-gray-100 ">
@@ -214,7 +213,7 @@ const Dashboard = () => {
                     <td className="border border-gray-300 text-center">
                       <button
                         className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50 btn-visualizar"
-                        onClick={() => handleVisualizar(file)} // Update the selected row data and trigger printing
+                        onClick={() => handleVisualizar(file)}  
                       >
                         Visualizar
                       </button>
@@ -266,16 +265,13 @@ const Dashboard = () => {
         </div>
       )}
       <div style={{ display: "none" }}>
-        {/* Pass the selectedRowData to ComponentToPrint */}
-        {selectedRowData && (
+         {selectedRowData && (
           <ComponentToPrint
             ref={componentRef}
             nombre={selectedRowData.nombre}
             tuDios={selectedRowData.midios}
             tulang={selectedRowData.lang}
-            contenidoprint={contenidoprint}
-            // Contenidoprintes = {Contenido}
-            // Contenidoprinten = {Contenidoeng}
+            contenidoprint={contenidoprint} 
           />
         )}
       </div>
@@ -289,29 +285,24 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
     tuDios,
     tulang,
     contenidoprint
-    // Contenidoprintes,
-    // Contenidoprinten
+ 
   }: {
     nombre: string;
     tuDios: string;
     tulang:string;
     contenidoprint: string;
-    // Contenidoprintes:any;
-    // Contenidoprinten:any;
+ 
     },
   ref: React.Ref<HTMLDivElement>
 ) {
   let tudioses = "TU DIOS ES"
-  // let contenidoprint
-  const imagendios = `/${tulang}/${tuDios}.png`;
+   const imagendios = `/${tulang}/${tuDios}.png`;
   if(tulang= "en"){
     tudioses = "YOUR GOD IS"
-    // contenidoprint = Contenidoprinten
-  }
+   }
   else {
     tudioses = "TU DIOS ES"
-    // contenidoprint = Contenidoprintes
-  }
+   }
   return (
     <div
       ref={ref}
