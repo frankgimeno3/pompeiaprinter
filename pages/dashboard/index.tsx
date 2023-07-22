@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar/navbar";
 import Whitenav from "../../components/Navbar/Whitenav";
@@ -99,13 +100,11 @@ const Dashboard = () => {
     const newOrder = header === currentOrder ? `-${header}` : header;
     const sortedTableData = files.slice().sort((a, b) => {
       if (header === 'updatedAt') {
-        // Ordenar por fecha y hora al seleccionar el cabezal Hora
-        return (
+         return (
           new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
         );
       } else {
-        // Ordenar alfanuméricamente para los cabezales Nombre y Dios
-        return (a as any)[header].localeCompare((b as any)[header]);
+         return (a as any)[header].localeCompare((b as any)[header]);
       }
     });
 
@@ -250,7 +249,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
       {/* Contenedor para la imagen de fondo */}
       <div
         className="absolute top-0 left-0 w-full h-full z-0"
-        style={{ opacity: 0.3 }} // Ajustar la opacidad según sea necesario
+        style={{ opacity: 0.3 }}  
       >
         <img
           src="/fondo1.png"
