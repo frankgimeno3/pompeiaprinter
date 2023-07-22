@@ -303,7 +303,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
 ) {
   let tudioses = "TU DIOS ES"
   // let contenidoprint
-  const imagendios = `/dioses/${tuDios}.png`;
+  const imagendios = `/${tulang}/${tuDios}.png`;
   if(tulang= "en"){
     tudioses = "YOUR GOD IS"
     // contenidoprint = Contenidoprinten
