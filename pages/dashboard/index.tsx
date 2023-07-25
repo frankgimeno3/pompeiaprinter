@@ -30,7 +30,7 @@ const Dashboard = () => {
   const [contenidoprint, setcontenidoprint] = useState("");
   const [currentOrder, setCurrentOrder] = useState<string>("");
   const [selectedRowData, setSelectedRowData] = useState<File | null>(null);
-   useEffect(() => {
+  useEffect(() => {
     fetch("http://localhost:5000/files/", {
       method: "GET",
       headers: {
@@ -45,7 +45,7 @@ const Dashboard = () => {
         }
       })
       .then((response) => {
-         setFiles(response);
+        setFiles(response);
       })
       .catch((error) => {
         console.error("Ha ocurrido un error:", error);
@@ -117,39 +117,99 @@ const Dashboard = () => {
 
   const handleVisualizar = (file: File) => {
     setSelectedRowData(file);
-    function selectedgod (file: File) {
-      if(file.lang == "en"){
-        if(file.midios == "CERES")setcontenidoprint(Contenidoeng.CERES)
-        if(file.midios == "DIANA")setcontenidoprint(Contenidoeng.DIANA)
-        if(file.midios == "PHOEBUS")setcontenidoprint(Contenidoeng.PHOEBUS)
-        if(file.midios == "JUPITER")setcontenidoprint(Contenidoeng.JUPITER)
-        if(file.midios == "JUNO")setcontenidoprint(Contenidoeng.JUNO)
-        if(file.midios == "MARS")setcontenidoprint(Contenidoeng.MARS)
-        if(file.midios == "MERCURY")setcontenidoprint(Contenidoeng.MERCURY)
-        if(file.midios == "MINERVA")setcontenidoprint(Contenidoeng.MINERVA)
-        if(file.midios == "NEPTUNE")setcontenidoprint(Contenidoeng.NEPTUNE)
-        if(file.midios == "VENUS")setcontenidoprint(Contenidoeng.VENUS)
-        if(file.midios == "VESTA")setcontenidoprint(Contenidoeng.VESTA)
-        if(file.midios == "VULCAN")setcontenidoprint(Contenidoeng.VULCAN)
-      } else {
-        if(file.midios == "CERES")setcontenidoprint(Contenido.CERES)
-        if(file.midios == "DIANA")setcontenidoprint(Contenido.DIANA)
-        if(file.midios == "FEBO")setcontenidoprint(Contenido.FEBO)
-        if(file.midios == "JUPITER")setcontenidoprint(Contenido.JUPITER)
-        if(file.midios == "JUNO")setcontenidoprint(Contenido.JUNO)
-        if(file.midios == "MARTE")setcontenidoprint(Contenido.MARTE)
-        if(file.midios == "MERCURIO")setcontenidoprint(Contenido.MERCURIO)
-        if(file.midios == "MINERVA")setcontenidoprint(Contenido.MINERVA)
-        if(file.midios == "NEPTUNO")setcontenidoprint(Contenido.NEPTUNO)
-        if(file.midios == "VENUS")setcontenidoprint(Contenido.VENUS)
-        if(file.midios == "VESTA")setcontenidoprint(Contenido.VESTA)
-        if(file.midios == "VULCANO")setcontenidoprint(Contenido.VULCANO)
-      }
-      }
-      selectedgod(file)
-      setTimeout(function() {
-        handlePrint();
-      }, 500);  };
+    switch (file.lang) {
+      case "es":
+        switch (file.midios) {
+          case "CERES":
+            setcontenidoprint(Contenido.CERES);
+            break;
+          case "DIANA":
+            setcontenidoprint(Contenido.DIANA);
+            break;
+          case "FEBO":
+            setcontenidoprint(Contenido.FEBO);
+            break;
+          case "JUPITER":
+            setcontenidoprint(Contenido.JUPITER);
+            break;
+          case "JUNO":
+            setcontenidoprint(Contenido.JUNO);
+            break;
+          case "MARTE":
+            setcontenidoprint(Contenido.MARTE);
+            break;
+          case "MERCURIO":
+            setcontenidoprint(Contenido.MERCURIO);
+            break;
+          case "MINERVA":
+            setcontenidoprint(Contenido.MINERVA);
+            break;
+          case "NEPTUNO":
+            setcontenidoprint(Contenido.NEPTUNO);
+            break;
+          case "VENUS":
+            setcontenidoprint(Contenido.VENUS);
+            break;
+          case "VESTA":
+            setcontenidoprint(Contenido.VESTA);
+            break;
+          case "VULCANO":
+            setcontenidoprint(Contenido.VULCANO);
+            break;
+          default:
+            break;
+        }
+        break;
+      case "en":
+        switch (file.midios) {
+          case "CERES":
+            setcontenidoprint(Contenidoeng.CERES);
+            break;
+          case "DIANA":
+            setcontenidoprint(Contenidoeng.DIANA);
+            break;
+          case "PHOEBUS":
+            setcontenidoprint(Contenidoeng.PHOEBUS);
+            break;
+          case "JUPITER":
+            setcontenidoprint(Contenidoeng.JUPITER);
+            break;
+          case "JUNO":
+            setcontenidoprint(Contenidoeng.JUNO);
+            break;
+          case "MARS":
+            setcontenidoprint(Contenidoeng.MARS);
+            break;
+          case "MERCURY":
+            setcontenidoprint(Contenidoeng.MERCURY);
+            break;
+          case "MINERVA":
+            setcontenidoprint(Contenidoeng.MINERVA);
+            break;
+          case "NEPTUNE":
+            setcontenidoprint(Contenidoeng.NEPTUNE);
+            break;
+          case "VENUS":
+            setcontenidoprint(Contenidoeng.VENUS);
+            break;
+          case "VESTA":
+            setcontenidoprint(Contenidoeng.VESTA);
+            break;
+          case "VULCAN":
+            setcontenidoprint(Contenidoeng.VULCAN);
+            break;
+          default:
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  
+    setTimeout(function () {
+      handlePrint();
+    }, 500);
+  };
 
   return (
     <div className="flex min-h-screen w-screen bg-gray-100 ">
@@ -196,7 +256,10 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {files.map((file) => (
-                  <tr key={file._id} className="border border-gray-300 font-light">
+                  <tr
+                    key={file._id}
+                    className="border border-gray-300 font-light "
+                  >
                     <td className="border border-gray-300 text-[0.65rem] text-left pl-5">
                       {new Date(file.updatedAt).toLocaleDateString()} -{" "}
                       {new Date(file.updatedAt).toLocaleTimeString()}
@@ -213,7 +276,7 @@ const Dashboard = () => {
                     <td className="border border-gray-300 text-center">
                       <button
                         className="rounded bg-gray-100 shadow px-5 py-1 text-xs text-[0.60rem] hover:bg-gray-50 btn-visualizar"
-                        onClick={() => handleVisualizar(file)}  
+                        onClick={() => handleVisualizar(file)}
                       >
                         Visualizar
                       </button>
@@ -265,13 +328,13 @@ const Dashboard = () => {
         </div>
       )}
       <div style={{ display: "none" }}>
-         {selectedRowData && (
+        {selectedRowData && (
           <ComponentToPrint
             ref={componentRef}
             nombre={selectedRowData.nombre}
             tuDios={selectedRowData.midios}
             tulang={selectedRowData.lang}
-            contenidoprint={contenidoprint} 
+            contenidoprint={contenidoprint}
           />
         )}
       </div>
@@ -284,32 +347,31 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
     nombre,
     tuDios,
     tulang,
-    contenidoprint
- 
+    contenidoprint,
   }: {
     nombre: string;
     tuDios: string;
-    tulang:string;
+    tulang: string;
     contenidoprint: string;
- 
-    },
+  },
   ref: React.Ref<HTMLDivElement>
 ) {
-  let tudioses = "TU DIOS ES"
-   const imagendios = `/${tulang}/${tuDios}.png`;
-  if(tulang= "en"){
-    tudioses = "YOUR GOD IS"
-   }
-  else {
-    tudioses = "TU DIOS ES"
-   }
+  const imagendios = `/${tulang}/${tuDios}.png`;
+  let tudioses = "TU DIOS ES";
+  switch (tulang) {
+    case "en":
+      tudioses = "YOUR GOD IS";
+      break;
+    default:
+      tudioses = "TU DIOS ES";
+  }
   return (
     <div
       ref={ref}
-      className="h-screen flex justify-center text-center relative cinzel-font"
+      className="h-screen flex justify-center text-center relative cinzel-font text-yellow-900 text-opacity-50 font-light"
     >
-       <div
-        className="absolute top-0 left-0 w-full h-full z-0 "
+      <div
+        className="absolute top-0 left-0 w-full h-full z-0"
         style={{ opacity: 0.3 }}
       >
         <img
@@ -321,18 +383,24 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
           }}
         />
       </div>
-       <div className="z-10 mt-24 pt-24">
-        <div className="flex flex-row text-center justify-center align-center  px-24 mx-14">
-          <div className="flex-1 flex items-center justify-center pl-5">
-            <Image src={imagendios} alt={tuDios} width={200} height={200} />
-          </div>
+      <div className="z-10 mt-24 pt-24">
+        <div className="mx-10 px-10">
+          <div className="flex flex-row text-center justify-center align-center px-24 mx-14">
+            <div className="flex-1 flex items-center justify-center pl-5">
+              <Image src={imagendios} alt={tuDios} width={200} height={200} />
+            </div>
 
-          <div className="flex-1 flex flex-col  align-center ">
-            <h1 className="text-6xl mt-10 ">{nombre}</h1>
-            <p className="text-black text-lg mt-5   text-black">{tudioses}</p>
-            <h2 className="  text-4xl  mb-5   ">{tuDios}</h2>
-            <div className="text-black">
-              <div className="text-lg mb-10 px-10">{contenidoprint}</div>
+            <div className="flex-1 flex flex-col align-center">
+              <h1 className="text-6xl mt-10 ">{nombre}</h1>
+              <p className="text-black text-lg mt-5 text-gray-400">
+                {tudioses}
+              </p>
+              <h2 className="text-4xl mb-5 ">{tuDios}</h2>
+              <div className="text-black">
+                <div className="text-lg mb-10 px-10 text-gray-400">
+                  {contenidoprint}
+                </div>
+              </div>
             </div>
           </div>
         </div>

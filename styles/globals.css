@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Helvetica&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap'  );
  
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -18,9 +19,8 @@
 }
 
 body {
-  font-family: 'Helvetica', sans-serif; /* Use Helvetica as the default font */
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  font-family: 'Helvetica', sans-serif;  
+   background: linear-gradient(
     to bottom,
     transparent,
     rgb(var(--background-end-rgb))
@@ -28,5 +28,8 @@ body {
   rgb(var(--background-start-rgb));
 }
 .cinzel-font {
-  font-family: 'Cinzel', serif; /* Use Cinzel font when this class is applied */
-}
+     font-family: 'Cinzel', serif;
+     font-weight: 400;
+   }
+
+ 
