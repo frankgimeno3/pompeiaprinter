@@ -365,7 +365,17 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
     default:
       tudioses = "TU DIOS ES";
   }
+
+  
+
   return (
+    <>
+    <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+          /* Agrega otros estilos personalizados aquí, si es necesario */
+        `}
+      </style>
     <div
       ref={ref}
       className="h-screen flex justify-center text-center relative cinzel-font text-yellow-900 text-opacity-50 font-light"
@@ -406,6 +416,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
         </div>
       </div>
     </div>
+    </>
   );
 });
 
