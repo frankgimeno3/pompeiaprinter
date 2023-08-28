@@ -16,7 +16,7 @@ const handleLogin = (e: React.FormEvent) => {
   expirationDate.setDate(expirationDate.getDate() + 1);
   const cookieOptions = {expires: expirationDate, secure: true
   };
-  fetch("http://localhost:5000/auth/login", {
+  fetch("https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const handleLogin = (e: React.FormEvent) => {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen bg-black">
       
     <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
       <div className="bg-gray-800 bg-opacity-60 backdrop-filter backdrop-blur-lg w-50vw pt-10 pb-10 ">
