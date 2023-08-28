@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [currentOrder, setCurrentOrder] = useState<string>("");
   const [selectedRowData, setSelectedRowData] = useState<File | null>(null);
   useEffect(() => {
-    fetch("http://localhost:5000/files/", {
+    fetch("https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/files/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const Dashboard = () => {
   }, []);
 
   const handleDelete = (id: string) => {
-    fetch(`http://localhost:5000/files/${id}`, {
+    fetch(`https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/files/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
