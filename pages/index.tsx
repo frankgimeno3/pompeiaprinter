@@ -32,9 +32,9 @@ const handleLogin = (e: React.FormEvent) => {
     })
     .then(response => {
  
-      console.log(response.authToken);
+      // console.log(response.authToken);
 
-      Cookies.set('authvalue', response.authToken, cookieOptions);  
+      // Cookies.set('authvalue', response.authToken, cookieOptions);  
       router.push("/dashboard");
     })
     .catch(error => {
