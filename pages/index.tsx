@@ -46,7 +46,7 @@ const handleLogin = (e: React.FormEvent) => {
     <div className="relative w-full h-screen bg-black">
       
     <div className="absolute inset-0 flex flex-col justify-center items-center text-center">
-      <div className="bg-gray-800 bg-opacity-60 backdrop-filter backdrop-blur-lg w-50vw pt-10 pb-10 ">
+      <div className=" backdrop-filter backdrop-blur-lg w-50vw pt-10 pb-10 ">
         <div className="flex flex-col items-center p-24">
           <h2 className="text-4xl text-white pb-10">Iniciar Sesión</h2>
 
