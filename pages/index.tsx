@@ -27,7 +27,11 @@ const handleLogin = (e: React.FormEvent) => {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Credenciales incorrectas");
+        if (response){console.log(response)}
+
+        // throw new Error("Credenciales incorrectas");
+        else{throw new Error("No response")}
+
       }
     })
     .then(response => {
