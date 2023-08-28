@@ -31,17 +31,15 @@ const handleLogin = (e: React.FormEvent) => {
       }
     })
     .then(response => {
-      // const { accessToken } = response
-      // console.log("Token:", accessToken);
+ 
       console.log(response.authToken);
 
-      Cookies.set('authvalue', response.authToken, cookieOptions); // Crear cookie con el valor del usuario
+      Cookies.set('authvalue', response.authToken, cookieOptions);  
       router.push("/dashboard");
     })
     .catch(error => {
       console.error("Ha ocurrido un error:", error);
-      // Maneja el error de conexión o cualquier otro error
-    });
+     });
   };
 
   return (

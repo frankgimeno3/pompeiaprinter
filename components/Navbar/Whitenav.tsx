@@ -27,14 +27,12 @@ const Whitenav: React.FC<WhitenavProps> = ({ setNavbarVisible }) => {
     try {
       const res = await fetch("http://localhost:5000/auth/logout", {
         method: "POST",
-        credentials: "include", // Para enviar las cookies al servidor
+        credentials: "include",  
       });
       if (res.status === 200) {
-        // Se ha cerrado sesión con éxito
-        router.push("/login"); // Redirige al usuario a la página de inicio de sesión
+         router.push("/login"); // Redirige al usuario a la página de inicio de sesión
       } else {
-        // Manejar el caso de error si no se pudo cerrar sesión
-        console.error("No se pudo cerrar sesión");
+         console.error("No se pudo cerrar sesión");
       }
     } catch (error) {
       console.error("Error al cerrar sesión", error);
