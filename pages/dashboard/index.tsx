@@ -53,13 +53,16 @@ const Dashboard = () => {
   }, []);
 
   const handleDelete = (id: string) => {
-    fetch(`https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/files/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    })
+    fetch(
+      `https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/files/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           window.location.reload();
@@ -132,8 +135,8 @@ const Dashboard = () => {
           case "JUPITER":
             setcontenidoprint(Contenido.JUPITER);
             break;
-          case "JUNO":
-            setcontenidoprint(Contenido.JUNO);
+          case "PLUTÓN":
+            setcontenidoprint(Contenido.PLUTÓN);
             break;
           case "MARTE":
             setcontenidoprint(Contenido.MARTE);
@@ -150,8 +153,8 @@ const Dashboard = () => {
           case "VENUS":
             setcontenidoprint(Contenido.VENUS);
             break;
-          case "VESTA":
-            setcontenidoprint(Contenido.VESTA);
+          case "BACO":
+            setcontenidoprint(Contenido.BACO);
             break;
           case "VULCANO":
             setcontenidoprint(Contenido.VULCANO);
@@ -174,8 +177,8 @@ const Dashboard = () => {
           case "JUPITER":
             setcontenidoprint(Contenidoeng.JUPITER);
             break;
-          case "JUNO":
-            setcontenidoprint(Contenidoeng.JUNO);
+          case "BACCHUS":
+            setcontenidoprint(Contenidoeng.BACCHUS);
             break;
           case "MARS":
             setcontenidoprint(Contenidoeng.MARS);
@@ -192,8 +195,8 @@ const Dashboard = () => {
           case "VENUS":
             setcontenidoprint(Contenidoeng.VENUS);
             break;
-          case "VESTA":
-            setcontenidoprint(Contenidoeng.VESTA);
+          case "PLUTO":
+            setcontenidoprint(Contenidoeng.PLUTO);
             break;
           case "VULCAN":
             setcontenidoprint(Contenidoeng.VULCAN);
@@ -205,7 +208,7 @@ const Dashboard = () => {
       default:
         break;
     }
-  
+
     setTimeout(function () {
       handlePrint();
     }, 500);
@@ -356,7 +359,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
   },
   ref: React.Ref<HTMLDivElement>
 ) {
-  const imagendios = `/${tulang}/${tuDios}.png`;
+  const imagendios = `/${tulang}s/${tuDios}.png`;
   let tudioses = "TU DIOS ES";
   switch (tulang) {
     case "en":
@@ -366,57 +369,55 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
       tudioses = "TU DIOS ES";
   }
 
-  
-
   return (
     <>
-    <style>
+      <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
           /* Agrega otros estilos personalizados aquí, si es necesario */
         `}
       </style>
-    <div
-      ref={ref}
-      className="h-screen flex justify-center text-center relative cinzel-font text-yellow-900 text-opacity-50 font-light"
-    >
       <div
-        className="absolute top-0 left-0 w-full h-full z-0"
-        style={{ opacity: 0.3 }}
+        ref={ref}
+        className="h-screen flex justify-center text-center relative cinzel-font text-yellow-900 text-opacity-50 font-light"
       >
-        <img
-          src="/fondo1.png"
-          alt="Fondo"
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      </div>
-      <div className="z-10 mt-24 pt-24">
-        <div className="mx-10 px-10">
-          <div className="flex flex-row text-center justify-center align-center px-24 mx-14">
-            <div className="flex-1 flex items-center justify-center pl-5">
-              <Image src={imagendios} alt={tuDios} width={200} height={200} />
-            </div>
-
-            <div className="flex-1 flex flex-col align-center">
-              <h1 className="text-6xl mt-10 ">{nombre}</h1>
-              <p className="text-black text-lg mt-5 text-gray-400">
+        <div
+          className="absolute top-0 left-0 w-full h-full z-0"
+          style={{ opacity: 0.3 }}
+        >
+          <img
+            src="/fondo2.png"
+            alt="Fondo"
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+        <div className="flex flex-row text-left justify-center align-center  px-20 pr-24 mx-14">
+             <div className="flex-1 flex flex-col  pl-14 ml-12 py-24 pr-2 justify-left ">
+              <h1 className="text-5xl  pt-24 ">{nombre}</h1>
+              <p className="text-black text-2xl mt-2 mb-8   text-black">
                 {tudioses}
               </p>
-              <h2 className="text-4xl mb-5 ">{tuDios}</h2>
+              <h2 className="text-black  text-5xl  mb-5   ">{tuDios}</h2>
               <div className="text-black">
-                <div className="text-lg mb-10 px-10 text-gray-400">
-                  {contenidoprint}
-                </div>
+                <div className="text-xl mb-10 pr-5">{contenidoprint}</div>
               </div>
+            </div>
+            <div className="flex-2 flex items-center justify-center   ">
+              <Image
+                src={imagendios}
+                alt={tuDios}
+                width={400}
+                height={400}
+                style={{ width: "auto", height: "auto" }}
+              className=" pt-14 mr-10" 
+              />
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </>
+     </>
   );
 });
 
