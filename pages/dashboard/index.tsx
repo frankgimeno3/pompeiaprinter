@@ -396,8 +396,8 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
             <img
               src={imagendios}
               alt={tuDios}
-              width={350}
-              height={350}
+              width={400}
+              height={400}
                className=" pt-14 mr-10"
             />
           </div>
