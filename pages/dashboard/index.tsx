@@ -405,8 +405,8 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
 
         <div className="absolute top-0 left-0 w-full h-full z-0">
           <img
-            src="/PortfolioDiseno.png"
-            alt="PortfolioDiseno"
+            src="/f2.png"
+            alt="f2"
             style={{
               width: "100%",
               height: "100%",
