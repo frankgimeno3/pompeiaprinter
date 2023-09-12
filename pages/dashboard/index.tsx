@@ -135,8 +135,8 @@ const Dashboard = () => {
           case "JUPITER":
             setcontenidoprint(Contenido.JUPITER);
             break;
-          case "PLUTÓN":
-            setcontenidoprint(Contenido.PLUTÓN);
+          case "JUNO":
+            setcontenidoprint(Contenido.JUNO);
             break;
           case "MARTE":
             setcontenidoprint(Contenido.MARTE);
@@ -153,8 +153,8 @@ const Dashboard = () => {
           case "VENUS":
             setcontenidoprint(Contenido.VENUS);
             break;
-          case "BACO":
-            setcontenidoprint(Contenido.BACO);
+          case "VESTA":
+            setcontenidoprint(Contenido.VESTA);
             break;
           case "VULCANO":
             setcontenidoprint(Contenido.VULCANO);
@@ -177,8 +177,8 @@ const Dashboard = () => {
           case "JUPITER":
             setcontenidoprint(Contenidoeng.JUPITER);
             break;
-          case "BACCHUS":
-            setcontenidoprint(Contenidoeng.BACCHUS);
+          case "VESTA":
+            setcontenidoprint(Contenidoeng.VESTA);
             break;
           case "MARS":
             setcontenidoprint(Contenidoeng.MARS);
@@ -195,8 +195,8 @@ const Dashboard = () => {
           case "VENUS":
             setcontenidoprint(Contenidoeng.VENUS);
             break;
-          case "PLUTO":
-            setcontenidoprint(Contenidoeng.PLUTO);
+          case "JUNO":
+            setcontenidoprint(Contenidoeng.JUNO);
             break;
           case "VULCAN":
             setcontenidoprint(Contenidoeng.VULCAN);
