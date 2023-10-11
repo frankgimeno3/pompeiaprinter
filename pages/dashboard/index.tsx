@@ -387,9 +387,9 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
             <p className="text-black text-2xl mt-2 mb-8   text-black">
               {tudioses}
             </p>
-            <h2 className="text-black  text-5xl  mb-5   ">{tuDios}</h2>
+            <h2 className="text-black  text-5xl  mb-4   ">{tuDios}</h2>
             <div className="text-black">
-              <div className="text-xl mb-10 pr-5">{contenidoprint}</div>
+              <div className="text-xl mb-10 pr-4">{contenidoprint}</div>
             </div>
           </div>
           <div className="flex-2 flex items-center justify-center   ">
