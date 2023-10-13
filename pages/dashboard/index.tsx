@@ -214,29 +214,25 @@ const Dashboard = () => {
     }, 500);
   };
 
-  const handleDeleteFiles = async () => {
-    try {
-      // Calcula la fecha de eliminación como "hoy - 2 días".
-     
-      
-      // Realiza una solicitud a tu backend para eliminar los archivos con una fecha de creación anterior a `deletionDate`.
-       const response = await fetch('/api/deleteFiles', {
-        method: 'DELETE',
-         
-      });
+  // const handleDeleteFiles = async () => {
+  //   try {
+  //     // Realiza una solicitud a tu backend para eliminar los archivos.
+  //     const response = await fetch('/api/deleteFiles', {
+  //       method: 'DELETE',
+  //     });
   
-      if (response.ok) {
-        // La solicitud fue exitosa, puedes mostrar un mensaje de éxito.
-        alert('Archivos eliminados con éxito.');
-      } else {
-        // Si la solicitud no es exitosa, muestra un mensaje de error.
-        alert('Todavía no hemos implementado esta funcionalidad, disculpen las molestias');
-      }
-    } catch (error) {
-      console.error('Error al eliminar archivos:', error);
-      alert('Error al eliminar archivos. Consulta la consola para obtener más detalles.');
-    }
-  };
+  //     if (response.ok) {
+  //       // La solicitud fue exitosa, puedes mostrar un mensaje de éxito.
+  //       alert('Archivos eliminados con éxito.');
+  //     } else {
+  //       // Si la solicitud no es exitosa, muestra un mensaje de error.
+  //       alert('Todavía no hemos implementado esta funcionalidad, disculpen las molestias');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error al eliminar archivos:', error);
+  //     alert('Error al eliminar archivos. Consulta la consola para obtener más detalles.');
+  //   }
+  // };
 
   return (
     <div className="flex min-h-screen w-screen bg-gray-100 ">
@@ -244,13 +240,13 @@ const Dashboard = () => {
       <div className="flex flex-col w-screen  ">
         <Whitenav setNavbarVisible={setNavbarVisible} />
         <div className="p-5">
-          <div className="mb-4 flex flex-row justify-between">
-            <h2 className=" ml-3 text-lg">Juego Dioses del Olimpo </h2>
-            <button className="bg-blue-500 text-white text-sm py-1 px-3 rounded hover:bg-blue-600 mr-20"
+          {/* <div className="mb-4 flex flex-row justify-between"> */}
+            <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
+            {/* <button className="bg-blue-500 text-white text-sm py-1 px-3 rounded hover:bg-blue-600 mr-20"
                       style={{ fontSize: "0.60rem" }}
                       onClick={handleDeleteFiles}
             >Borrar contenido antiguo</button>
-          </div>
+          </div> */}
           <div className="mr-20 bg-white p-5 ">
             <table className="text-xs border border-gray-300 bg-white w-full text-left">
               <thead>
