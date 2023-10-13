@@ -222,10 +222,7 @@ const Dashboard = () => {
       // Realiza una solicitud a tu backend para eliminar los archivos con una fecha de creación anterior a `deletionDate`.
        const response = await fetch('/api/deleteFiles', {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(1634043371000),
+         
       });
   
       if (response.ok) {
