@@ -214,13 +214,49 @@ const Dashboard = () => {
     }, 500);
   };
 
+  const handleDeleteFiles = async () => {
+    try {
+      // Calcula la fecha de eliminación como "hoy - 2 días".
+      const deletionDate = new Date();
+      deletionDate.setDate(deletionDate.getDate() - 1);
+
+      // Realiza una solicitud a tu backend para eliminar los archivos con una fecha de creación anterior a `deletionDate`.
+
+      const response = await fetch('/api/deleteFiles', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ deletionDate }),
+      });
+    
+
+      if (response.ok) {
+        // La solicitud fue exitosa, puedes mostrar un mensaje de éxito.
+        alert('Archivos eliminados con éxito.');
+      } else {
+        // Si la solicitud no es exitosa, muestra un mensaje de error.
+        alert('No se eliminó nada');
+      }
+    } catch (error) {
+      console.error('Error al eliminar archivos:', error);
+      alert('Error al eliminar archivos. Consulta la consola para obtener más detalles.');
+    }
+  };
+
   return (
     <div className="flex min-h-screen w-screen bg-gray-100 ">
       {navbarVisible && <Navbar />}
       <div className="flex flex-col w-screen  ">
         <Whitenav setNavbarVisible={setNavbarVisible} />
         <div className="p-5">
-          <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
+          <div className="mb-4 flex flex-row justify-between">
+            <h2 className=" ml-3 text-lg">Juego Dioses del Olimpo </h2>
+            <button className="bg-blue-500 text-white text-sm py-1 px-3 rounded hover:bg-blue-600 mr-20"
+                      style={{ fontSize: "0.60rem" }}
+                      onClick={handleDeleteFiles}
+            >Borrar contenido antiguo</button>
+          </div>
           <div className="mr-20 bg-white p-5 ">
             <table className="text-xs border border-gray-300 bg-white w-full text-left">
               <thead>
@@ -381,7 +417,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
         ref={ref}
         className=" h-screen flex justify-center text-center relative cinzel-font text-yellow-900 text-opacity-50 font-light"
       >
-        <div className="flex flex-row text-left justify-center align-center  px-20 pr-24 mx-14"   style={{ zIndex: 1 }}>
+        <div className="flex flex-row text-left justify-center align-center  px-20 pr-24 mx-14" style={{ zIndex: 1 }}>
           <div className="flex-1 flex flex-col  pl-14 ml-12 py-20 pr-2 justify-left ">
             <h1 className="text-5xl  pt-24 ">{nombre}</h1>
             <p className="text-black text-2xl mt-2 mb-8   text-black">
@@ -398,7 +434,7 @@ const ComponentToPrint = React.forwardRef(function ComponentToPrint(
               alt={tuDios}
               width={400}
               height={400}
-               className=" pt-14 mr-10"
+              className=" pt-14 mr-10"
             />
           </div>
         </div>
