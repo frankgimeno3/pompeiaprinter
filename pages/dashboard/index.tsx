@@ -217,21 +217,15 @@ const Dashboard = () => {
   const handleDeleteFiles = async () => {
     try {
       // Calcula la fecha de eliminación como "hoy - 2 días".
-      const deletionDate = new Date();
-      deletionDate.setDate(deletionDate.getDate() - 2); // Resta 2 días
-  
-      // Obtiene el timestamp en milisegundos.
-      const deletionTimestamp = deletionDate.getTime();
-  
+     
       
       // Realiza una solicitud a tu backend para eliminar los archivos con una fecha de creación anterior a `deletionDate`.
-      console.log(deletionTimestamp)
-      const response = await fetch('/api/deleteFiles', {
+       const response = await fetch('/api/deleteFiles', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ deletionTimestamp }),
+        body: JSON.stringify(1634043371000),
       });
   
       if (response.ok) {
