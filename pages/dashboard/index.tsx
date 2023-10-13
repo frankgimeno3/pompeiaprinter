@@ -218,25 +218,28 @@ const Dashboard = () => {
     try {
       // Calcula la fecha de eliminación como "hoy - 2 días".
       const deletionDate = new Date();
-      deletionDate.setDate(deletionDate.getDate() - 1);
-
+      deletionDate.setDate(deletionDate.getDate() - 2); // Resta 2 días
+  
+      // Obtiene el timestamp en milisegundos.
+      const deletionTimestamp = deletionDate.getTime();
+  
+      
       // Realiza una solicitud a tu backend para eliminar los archivos con una fecha de creación anterior a `deletionDate`.
-
+      console.log(deletionTimestamp)
       const response = await fetch('/api/deleteFiles', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ deletionDate }),
+        body: JSON.stringify({ deletionTimestamp }),
       });
-    
-
+  
       if (response.ok) {
         // La solicitud fue exitosa, puedes mostrar un mensaje de éxito.
         alert('Archivos eliminados con éxito.');
       } else {
         // Si la solicitud no es exitosa, muestra un mensaje de error.
-        alert('No se eliminó nada');
+        alert('Todavía no hemos implementado esta funcionalidad, disculpen las molestias');
       }
     } catch (error) {
       console.error('Error al eliminar archivos:', error);
