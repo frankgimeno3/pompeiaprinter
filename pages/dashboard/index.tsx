@@ -30,6 +30,8 @@ const Dashboard = () => {
   const [contenidoprint, setcontenidoprint] = useState("");
   const [currentOrder, setCurrentOrder] = useState<string>("");
   const [selectedRowData, setSelectedRowData] = useState<File | null>(null);
+
+
   useEffect(() => {
     fetch("https://pompeiabackend-ntha9xyjc-frankgimeno3.vercel.app/files/", {
       method: "GET",
@@ -220,7 +222,7 @@ const Dashboard = () => {
   //     const response = await fetch('/api/deleteFiles', {
   //       method: 'DELETE',
   //     });
-  
+
   //     if (response.ok) {
   //       // La solicitud fue exitosa, puedes mostrar un mensaje de éxito.
   //       alert('Archivos eliminados con éxito.');
@@ -241,8 +243,8 @@ const Dashboard = () => {
         <Whitenav setNavbarVisible={setNavbarVisible} />
         <div className="p-5">
           {/* <div className="mb-4 flex flex-row justify-between"> */}
-            <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
-            {/* <button className="bg-blue-500 text-white text-sm py-1 px-3 rounded hover:bg-blue-600 mr-20"
+          <h2 className="mb-4 ml-3 text-lg">Juego Dioses del Olimpo </h2>
+          {/* <button className="bg-blue-500 text-white text-sm py-1 px-3 rounded hover:bg-blue-600 mr-20"
                       style={{ fontSize: "0.60rem" }}
                       onClick={handleDeleteFiles}
             >Borrar contenido antiguo</button>
